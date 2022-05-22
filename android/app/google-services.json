@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "648579734856",
+    "project_id": "flutter-task-kortoba",
+    "storage_bucket": "flutter-task-kortoba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648579734856:android:f17cd8d408fa93f336277d",
+        "android_client_info": {
+          "package_name": "com.example.flutter_task_kortobaa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648579734856-mdfq4nn652tisihnumsv2ju5i758gbl1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_task_kortobaa",
+            "certificate_hash": "3aac6c55484e85740660fae732157c866f54debe"
+          }
+        },
+        {
+          "client_id": "648579734856-uk052gduopep2e5tp520tg76emdjt58j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbJqIjEe9BnzqYjborOwaxd9mdtwV1Wmw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648579734856-uk052gduopep2e5tp520tg76emdjt58j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
