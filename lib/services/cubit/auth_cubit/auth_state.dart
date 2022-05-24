@@ -11,10 +11,9 @@ class PassConfirmVisibilityState extends AuthState{}
 
 class LoginLoadingState extends AuthState {}
 class LoginSuccessState extends AuthState {
-  final String uId;
+  final UserModel response;
 
-  LoginSuccessState(this.uId);
-
+  LoginSuccessState(this.response);
 }
 class LoginErrorState extends AuthState {
    final String? error;
@@ -30,11 +29,18 @@ class RegisterErrorState extends AuthState {
 
 class CreateUserLoadingState extends AuthState {}
 class CreateUserSuccessState extends AuthState {
-  final String uId;
-
-  CreateUserSuccessState(this.uId);
+  final UserModel response;
+  CreateUserSuccessState(this.response);
 }
 class CreateUserErrorState extends AuthState {
   final String? error;
   CreateUserErrorState(this.error);
+}
+
+
+class LogoutLoadingState extends AuthState {}
+class LogoutSuccessState extends AuthState {}
+class  LogoutErrorState extends AuthState {
+  final String? error;
+  LogoutErrorState(this.error);
 }

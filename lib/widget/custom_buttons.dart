@@ -42,7 +42,7 @@ class CustomButtonArgonAnimation extends StatelessWidget {
             //   ),
           ),
         ),
-        borderRadius: 10.0,
+        borderRadius: 8.0,
         color: color,
         child: Text(text,
             style: Theme.of(context)
@@ -106,18 +106,17 @@ class CustomTextButton extends StatelessWidget {
     Key? key,
     required this.text,
     required this.onPressed,
+    this.color,
   }) : super(key: key);
 
   final Function()? onPressed;
   final String text;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      //     () {
-      //   TranslateLang.changeLang(context);
-      // },
       style: ButtonStyle(
         padding: MaterialStateProperty.all(const EdgeInsets.all(15.0)),
       ),
@@ -127,7 +126,7 @@ class CustomTextButton extends StatelessWidget {
         style: Theme.of(context)
             .textTheme
             .bodyText1!
-            .apply(color: MyColors.colorPrimary),
+            .apply(color: color ?? MyColors.colorPrimary),
       ),
     );
   }

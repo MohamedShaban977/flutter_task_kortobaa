@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_task_kortobaa/core/helper/local/cache_helper.dart';
+import 'package:flutter_task_kortobaa/core/helper/local/hive_helper.dart';
 import 'package:flutter_task_kortobaa/core/shared/route/custom_route.dart';
 import 'package:flutter_task_kortobaa/core/shared/route/magic_router.dart';
 import 'package:flutter_task_kortobaa/core/utils/colors.dart';
@@ -21,15 +22,16 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: MyColors.colorStatusBar,
-  ));
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: MyColors.colorStatusBar));
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
+  // await Hive.initFlutter();
+  await HiveHelper.init();
+
   await CacheHelper.init();
-
+  currentLang = CacheHelper.getData(key: CURRENT_LANG_KEY);
   uId = CacheHelper.getData(key: Shared_Uid);
-
   await TranslateLang.translatorInit();
 
   BlocOverrides.runZoned(
@@ -49,12 +51,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit()..getUserData(),
+      create: (context) => AppCubit()
+        ..getUserData()
+        ..getPost()
+        ..getPostsSavedInHave()
+        ..getPostsFavoritesInHave(),
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Social Demo Task',
 
         theme: themeDataLight,
         darkTheme: themeDataDark,
+        debugShowCheckedModeBanner: false,
 
         // home: const MyHomePage(title: 'Flutter Demo Home Page'),
         localizationsDelegates: translator.delegates,
@@ -63,7 +70,7 @@ class MyApp extends StatelessWidget {
 
         navigatorKey: navigatorKey,
         onGenerateRoute: onGenerateRoute,
-        home: uId == null ? LoginView() :  LayoutApp(),
+        home: uId == null ? LoginView() : LayoutApp(),
 
         // locale: ,
       ),

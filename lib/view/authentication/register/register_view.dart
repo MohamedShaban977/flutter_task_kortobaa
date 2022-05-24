@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_task_kortobaa/core/helper/local/cache_helper.dart';
 import 'package:flutter_task_kortobaa/core/shared/route/magic_router.dart';
 import 'package:flutter_task_kortobaa/core/utils/constants.dart';
+import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:flutter_task_kortobaa/services/cubit/auth_cubit/auth_cubit.dart';
 import 'package:flutter_task_kortobaa/view/layout_app/layout_app.dart';
 import 'package:flutter_task_kortobaa/widget/toast_and_snackbar.dart';
@@ -52,8 +53,9 @@ class RegisterView extends StatelessWidget {
     }
 
     if (state is CreateUserSuccessState) {
-      CacheHelper.saveData(key: Shared_Uid, value: state.uId)
-          .then((value) => MagicRouter.navigateAndPopAll( LayoutApp()))
+      AppCubit.get(context).userModel = state.response;
+      CacheHelper.saveData(key: Shared_Uid, value: state.response.uId)
+          .then((value) => MagicRouter.navigateAndPopAll(LayoutApp()))
           .catchError((error) => print(error.toString()));
     }
   }
@@ -71,6 +73,8 @@ class RegisterView extends StatelessWidget {
                 .headline6
                 ?.apply(color: MyColors.colorPrimary, fontWeightDelta: 800),
           ),
+          iconTheme: const IconThemeData(color: MyColors.colorPrimary),
+          actionsIconTheme: const IconThemeData(color: MyColors.colorPrimary),
           toolbarHeight: 100,
           centerTitle: true,
           elevation: 0.0,

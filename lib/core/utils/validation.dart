@@ -24,8 +24,7 @@ class Validation{
     if (password.isEmpty) {
    return "PasswordEmpty".tr();
     }
-    else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,16}$')
-        .hasMatch(password)) {
+    else if (password.length <6) {
    return "InvalidPassword".tr();
     }
     else {

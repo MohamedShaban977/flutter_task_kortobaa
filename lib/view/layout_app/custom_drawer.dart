@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_task_kortobaa/core/shared/route/magic_router.dart';
+import 'package:flutter_task_kortobaa/view/saved/saved_view.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../../core/utils/colors.dart';
@@ -14,7 +16,6 @@ class CustomDrawer extends StatelessWidget {
         _tabController = tabController,
         super(key: key);
 
-
   final AppCubit _cubit;
   final TabController _tabController;
   late Size _deviceSize;
@@ -22,48 +23,51 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     _deviceSize = MediaQuery.of(context).size;
-    return Drawer(
+    return SizedBox(
       width: _deviceSize.width * 0.7,
-      child: ListView(
-        children: [
-          /// Drawer Header
-          buildDrawerHeader(context),
-          const SizedBox(height: 20.0),
+      child: Drawer(
+        child: ListView(
+          children: [
+            /// Drawer Header
+            buildDrawerHeader(context),
+            const SizedBox(height: 20.0),
 
-          /// Home Button Drawer
-          buildButtonDrawer(
-            context,
-            text: 'Home'.tr(),
-            icon: Icons.home,
-            onTap: () {
-              _tabController.index = 0;
-              Navigator.pop(context);
-            },
-          ),
-          buildDivider(),
+            /// Home Button Drawer
+            buildButtonDrawer(
+              context,
+              text: 'Home'.tr(),
+              icon: Icons.home,
+              onTap: () {
+                _tabController.index = 0;
+                Navigator.pop(context);
+              },
+            ),
+            buildDivider(),
 
-          /// MyAccount Button Drawer
-          buildButtonDrawer(
-            context,
-            text: 'MyAccount'.tr(),
-            icon: Icons.person,
-            onTap: () {
-              _tabController.index = 1;
-              Navigator.pop(context);
-            },
-          ),
-          buildDivider(),
+            /// MyAccount Button Drawer
+            buildButtonDrawer(
+              context,
+              text: 'MyAccount'.tr(),
+              icon: Icons.person,
+              onTap: () {
+                _tabController.index = 1;
+                Navigator.pop(context);
+              },
+            ),
+            buildDivider(),
 
-          /// Saved Button Drawer
-          buildButtonDrawer(
-            context,
-            text: 'Saved'.tr(),
-            icon: Icons.bookmark,
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-        ],
+            /// Saved Button Drawer
+            buildButtonDrawer(
+              context,
+              text: 'Saved'.tr(),
+              icon: Icons.bookmark,
+              onTap: () {
+                Navigator.pop(context);
+                MagicRouter.navigateTo(SavedView());
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -110,22 +114,25 @@ class CustomDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 20.0),
-            const CircleAvatar(
-              radius: 30,
+            // const SizedBox(height: 20.0),
+            CircleAvatar(
+              radius: 50,
               backgroundColor: Colors.white38,
-              child: Icon(
-                Icons.person,
-                color: Colors.white70,
-                size: 40,
-              ),
+              backgroundImage: NetworkImage(_cubit.userModel.image!),
+              child: _cubit.userModel.image == null
+                  ? const Icon(
+                      Icons.person,
+                      color: Colors.white70,
+                      size: 40,
+                    )
+                  : const SizedBox(),
             ),
             Flexible(
               child: Text(
-                '${_cubit.model.firstName!} ${_cubit.model.lastName!}',
+                '${_cubit.userModel.firstName!} ${_cubit.userModel.lastName!}',
                 style: Theme.of(context).textTheme.subtitle1!.copyWith(
                     color: Colors.white70,
-                    height: 3,
+                    height: 2.0,
                     fontWeight: FontWeight.w600),
                 overflow: TextOverflow.ellipsis,
               ),

@@ -41,7 +41,31 @@
   "Favorites": "Favorites",
   "Settings": "Settings",
   "EditProfile": "Edit Profile",
-  "Save": "Save"
+  "Save": "Save",
+
+  "Logout": "Logout",
+
+  "Discard": "Discard",
+  "Post": "Post",
+  "UploadImage": "UploadImage",
+  "WriteCommentAboutThis": "Write a comment about this",
+
+  "SomethingWentWrong": "Something went wrong",
+  "Success": "Success",
+
+  "SavedSuc": "Saved Success",
+  "UnSaved": "UnSaved",
+  "SavedIsIEmpty" : "Saved is empty",
+
+  "NotFoundData":"Not Found Data"
+
+
+
+
+
+
+
+
 
 
 

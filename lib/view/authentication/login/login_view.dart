@@ -7,6 +7,7 @@ import 'package:flutter_task_kortobaa/core/shared/translation/Translation.dart';
 import 'package:flutter_task_kortobaa/core/utils/colors.dart';
 import 'package:flutter_task_kortobaa/core/utils/constants.dart';
 import 'package:flutter_task_kortobaa/core/utils/validation.dart';
+import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:flutter_task_kortobaa/services/cubit/auth_cubit/auth_cubit.dart';
 import 'package:flutter_task_kortobaa/view/authentication/register/register_view.dart';
 import 'package:flutter_task_kortobaa/view/layout_app/layout_app.dart';
@@ -46,9 +47,13 @@ class LoginView extends StatelessWidget {
     }
 
     if (state is LoginSuccessState) {
-      CacheHelper.saveData(key: Shared_Uid, value: state.uId)
-          .then((value) => MagicRouter.navigateAndPopAll( LayoutApp()))
-          .catchError((error){print(error.toString());});
+
+      CacheHelper.saveData(key: Shared_Uid, value: state.response.uId)
+          .then((value) => MagicRouter.navigateAndPopAll(LayoutApp()))
+          .catchError((error) {
+        print(error.toString());
+      });
+      AppCubit.get(context).userModel = state.response;
     }
   }
 
@@ -64,7 +69,7 @@ class LoginView extends StatelessWidget {
                 key: _formKey,
                 child: Column(
                   children: [
-                    SizedBox(height: deviseSize.height * 0.13),
+                    SizedBox(height: deviseSize.height * 0.1),
                     Text(
                       'Login'.tr(),
                       textAlign: TextAlign.center,

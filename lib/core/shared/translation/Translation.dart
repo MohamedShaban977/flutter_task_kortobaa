@@ -1,6 +1,7 @@
 
 import 'package:localize_and_translate/localize_and_translate.dart';
 
+import '../../helper/local/cache_helper.dart';
 import '../../utils/constants.dart';
 // import '../helper/local/cache_helper.dart';
 
@@ -11,7 +12,7 @@ class TranslateLang {
         localeType: LocalizationDefaultType.device,
         languagesList: <String>[langAR, langEN],
         assetsDirectory: 'assets/lang/',
-        language: langAR
+        language: currentLang ?? langAR
         );
 
 
@@ -22,10 +23,11 @@ class TranslateLang {
       remember: true,
       restart: true,
     );
-    // CacheHelper.saveData(
-    //   key: CURRENT_LANG_KEY,
-    //   value: translator.activeLanguageCode,
-    // );
+
+    CacheHelper.saveData(
+      key: CURRENT_LANG_KEY,
+      value: translator.activeLanguageCode,
+    );
 
     print(translator.activeLanguageCode);
   }
