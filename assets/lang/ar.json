@@ -8,6 +8,7 @@
   "PasswordEmpty": "الرجاء ادخل كلمة المرور",
   "InvalidPassword": "يجب أن تحتوي كلمة المرور على حرف كبير وحرف صغير وعلامة ترقيم وارقام ويكون طولها من 8 الى 16 حرف",
   "Forget": "نسيت كلمة المرور؟",
+  "ResetPassword": "إعادة تعيين كلمة المرور",
   "OR": "أو",
   "RegisterNewAccount": "تسجيل حساب جديد",
   "CheckAccount": "إذا ام يكن لديك حساب قم بالتسجيل",
@@ -42,6 +43,8 @@
   "SavedSuc": "تم الحفظ",
   "UnSaved": "تم الغاء الحفظ",
   "SavedIsIEmpty" : "لا يوجد محفوظات",
-  "NotFoundData":"لا يوجد بيانات"
-
+  "FavoritesIsIEmpty" : "لا يوجد مفضلة",
+  "NotFoundData":"لا يوجد بيانات",
+  "NoInternetConnection": "لا يوجد إتصال بالانترنت !",
+  "TryAgain":"اعادة المحاولة"
 }

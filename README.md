@@ -6,16 +6,25 @@ demo for social application
 
 State management => [bloc => cubit]
 
+Firebase is to be used for authentication and posts CRUD Local storage used for caching posts
+locally
+
 add localization in app support [arabic - english]
 
 authentication [ login - register - reset password]
 
-used firebase package 1- firebase_auth 2- cloud_firestore: used in CRUD in firebase 3-
-firebase_storage: used in upload images
+used firebase package . 
+1- firebase_auth
+2- cloud_firestore: used in CRUD in firebase
+3- firebase_storage: used in upload images
 
 Cache data used in store user data after login first time. used it when user add post.
 
 Check network Connectivity
+
+pagination
+
+
 
 # flutter_task_kortobaa
 

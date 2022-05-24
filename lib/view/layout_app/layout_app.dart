@@ -9,12 +9,13 @@ import 'package:flutter_task_kortobaa/widget/custom_buttons.dart';
 import 'package:flutter_task_kortobaa/widget/toast_and_snackbar.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-import '../home/home_view.dart';
-import '../my_account/my_account.dart';
-import 'custom_drawer.dart';
+
+import '../../widget/custom_drawer.dart';
+import 'home/home_view.dart';
+import 'my_account/my_account.dart';
 
 class LayoutApp extends StatefulWidget {
-  LayoutApp({Key? key}) : super(key: key);
+  const LayoutApp({Key? key}) : super(key: key);
 
   @override
   State<LayoutApp> createState() => _LayoutAppState();
@@ -43,9 +44,7 @@ class _LayoutAppState extends State<LayoutApp>
   Widget build(BuildContext context) {
     deviceSize = MediaQuery.of(context).size;
     return BlocConsumer<AppCubit, AppState>(
-      listener: (context, state) {
-        // TODO: implement listener
-      },
+      listener: (context, state) {},
       builder: (context, state) {
         _cubit = AppCubit.get(context);
         return ConditionalBuilder(
@@ -56,17 +55,28 @@ class _LayoutAppState extends State<LayoutApp>
               child: loading(context),
             ),
           ),
-          builder: (context) => Scaffold(
-            appBar: buildAppBar(),
-            drawer: CustomDrawer(
-              cubit: _cubit,
-              tabController: _tabController,
-            ),
-            body: Column(
-              children: <Widget>[
-                // buildCardCheckEmailIsVerified(),
-                buildTabBarView(),
-              ],
+          builder: (context) => WillPopScope(
+           onWillPop: ()async{
+             if (_tabController.index != 0) {
+               _tabController.index = 0;
+               return false;
+             }
+             else {
+               return true;
+             }
+           },
+            child: Scaffold(
+              appBar: buildAppBar(),
+              drawer: CustomDrawer(
+                cubit: _cubit,
+                tabController: _tabController,
+              ),
+              body: Column(
+                children: <Widget>[
+                  // buildCardCheckEmailIsVerified(),
+                  buildTabBarView(),
+                ],
+              ),
             ),
           ),
         );
@@ -92,7 +102,7 @@ class _LayoutAppState extends State<LayoutApp>
           controller: _tabController,
           children: [
             /// HomeView tab bar view widget
-            HomeView(),
+            const HomeView(),
 
             /// MyAccountView tab bar view widget
             MyAccountView(),

@@ -37,6 +37,7 @@ class SettingsView extends StatelessWidget {
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is LogoutSuccessState) {
+
                   MagicRouter.navigateAndPopAll(LoginView());
                 }
                 if (state is LogoutErrorState) {

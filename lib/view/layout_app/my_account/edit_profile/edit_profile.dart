@@ -10,11 +10,12 @@ import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-import '../../../core/utils/colors.dart';
-import '../../../core/utils/validation.dart';
-import '../../../widget/custom_buttons.dart';
-import '../../../widget/custom_text_field.dart';
-import '../../../widget/dialog_select_image.dart';
+import '../../../../core/utils/colors.dart';
+import '../../../../core/utils/validation.dart';
+import '../../../../widget/custom_buttons.dart';
+import '../../../../widget/custom_text_field.dart';
+import '../../../../widget/dialog_select_image.dart';
+
 
 class EditProfile extends StatelessWidget {
   EditProfile({Key? key}) : super(key: key);

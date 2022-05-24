@@ -83,9 +83,9 @@ class ResetPassword extends StatelessWidget {
                                 ),
                                 SizedBox(height: deviceSize.height * 0.05),
 
-                                /// login button
+                                /// send email
                                 CustomButtonArgonAnimation(
-                                  text: 'resetPassword'.tr(),
+                                  text: 'Send'.tr(),
                                   color: MyColors.colorOrange,
                                   width: deviceSize.width,
                                   onTap:
@@ -117,16 +117,16 @@ class ResetPassword extends StatelessWidget {
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
       title: Text(
-        'ForgetPassword'.tr(),
+        'ResetPassword'.tr(),
         textAlign: TextAlign.center,
         style: Theme.of(context)
             .textTheme
-            .headline4
+            .headline6
             ?.apply(color: MyColors.colorPrimary, fontWeightDelta: 2),
       ),
       iconTheme: const IconThemeData(color: MyColors.colorPrimary),
       actionsIconTheme: const IconThemeData(color: MyColors.colorPrimary),
-      toolbarHeight: 200,
+      toolbarHeight: MediaQuery.of(context).size.height*0.1,
       centerTitle: true,
       elevation: 0.0,
       backgroundColor: Colors.transparent,

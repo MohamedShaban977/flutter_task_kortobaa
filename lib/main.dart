@@ -13,6 +13,7 @@ import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:flutter_task_kortobaa/services/cubit/connection/connection.dart';
 import 'package:flutter_task_kortobaa/view/authentication/login/login_view.dart';
 import 'package:flutter_task_kortobaa/view/layout_app/layout_app.dart';
+import 'package:flutter_task_kortobaa/view/splash/splash_view.dart';
 import 'package:flutter_task_kortobaa/widget/material_builder_widget.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
@@ -37,11 +38,10 @@ void main() async {
   await TranslateLang.translatorInit();
 
   BlocOverrides.runZoned(
-        () =>
-        runApp(LocalizedApp(
-            child: MyApp(
-              uId: uId,
-            ))),
+    () => runApp(LocalizedApp(
+        child: MyApp(
+      uId: uId,
+    ))),
     blocObserver: MyBlocObserver(),
   );
 }
@@ -58,8 +58,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => ConnectionCubit()..listenConnectionState()),
         BlocProvider(
-          create: (context) =>
-          AppCubit()
+          create: (context) => AppCubit()
             ..getUserData()
             ..getPost()
             ..getPostsSavedInHave()
@@ -86,8 +85,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) => MaterialBuilderWidget(child!),
 
         /// initial Screen
-        home: uId == null ? LoginView() : LayoutApp(),
-
+        home:SplashView(uId: uId),
       ),
     );
   }

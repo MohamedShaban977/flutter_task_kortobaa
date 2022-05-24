@@ -12,6 +12,8 @@
   "InvalidPassword": "Invalid password format",
 
   "Forget": "Forget Password?",
+  "ResetPassword": "Reset Password",
+
   "OR":"OR",
   "RegisterNewAccount": "Register a new account",
   "CheckAccount": "If you don't have an account, sign up",
@@ -39,6 +41,8 @@
   "Send": "Send",
 
   "Favorites": "Favorites",
+  "FavoritesIsIEmpty" : "Favorites is empty",
+
   "Settings": "Settings",
   "EditProfile": "Edit Profile",
   "Save": "Save",
@@ -57,7 +61,10 @@
   "UnSaved": "UnSaved",
   "SavedIsIEmpty" : "Saved is empty",
 
-  "NotFoundData":"Not Found Data"
+  "NotFoundData":"Not Found Data",
+
+  "NoInternetConnection": "No internet connection !",
+  "TryAgain":"try again"
 
 
 

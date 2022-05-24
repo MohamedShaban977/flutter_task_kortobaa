@@ -287,7 +287,8 @@ class AppCubit extends Cubit<AppState> {
                 isLike: false,
               )).toJson())
           .then((value) async {
-        await getPost();
+        posts.clear();
+         getPost();
         deleteImage(EnumSelectImage.IMGPOS.name);
       });
 

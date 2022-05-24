@@ -1,15 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_task_kortobaa/core/helper/local/hive_helper.dart';
-import 'package:flutter_task_kortobaa/view/my_account/my_favorites.dart';
-import 'package:flutter_task_kortobaa/view/my_account/settings/Settings_view.dart';
+import 'package:flutter_task_kortobaa/view/layout_app/my_account/settings/Settings_view.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-import '../../core/shared/route/magic_router.dart';
-import '../../core/utils/colors.dart';
-import '../../services/cubit/app_cubit/app_cubit.dart';
+import '../../../core/shared/route/magic_router.dart';
+import '../../../core/utils/colors.dart';
+import '../../../services/cubit/app_cubit/app_cubit.dart';
+import '../favorite/my_favorites.dart';
 import 'edit_profile/edit_profile.dart';
+
+
 
 // ignore: must_be_immutable
 class MyAccountView extends StatelessWidget {
@@ -106,8 +107,10 @@ class MyAccountView extends StatelessWidget {
               text: 'Settings'.tr(),
               iconData: Icons.settings,
               onPressed: () => MagicRouter.navigateTo(const SettingsView())),
-          buildButton(context, text: 'Favorites'.tr(), iconData: Icons.star,
-              onPressed: () =>MagicRouter.navigateTo(FavoriteView())),
+          buildButton(context,
+              text: 'Favorites'.tr(),
+              iconData: Icons.star,
+              onPressed: () => MagicRouter.navigateTo(FavoriteView())),
         ],
       );
 

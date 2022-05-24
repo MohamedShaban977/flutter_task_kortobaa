@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_task_kortobaa/core/shared/route/magic_router.dart';
-import 'package:flutter_task_kortobaa/view/saved/saved_view.dart';
+import 'package:flutter_task_kortobaa/view/layout_app/saved/saved_view.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-import '../../core/utils/colors.dart';
-import '../../services/cubit/app_cubit/app_cubit.dart';
+import '../core/utils/colors.dart';
+import '../services/cubit/app_cubit/app_cubit.dart';
+import '../view/layout_app/saved/saved_view.dart';
 
 // ignore: must_be_immutable
 class CustomDrawer extends StatelessWidget {

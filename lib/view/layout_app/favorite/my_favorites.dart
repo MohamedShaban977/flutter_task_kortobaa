@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-import '../../services/cubit/app_cubit/app_cubit.dart';
+import '../../../services/cubit/app_cubit/app_cubit.dart';
 import '../home/home_view.dart';
 
 
@@ -35,7 +35,7 @@ class FavoriteView extends StatelessWidget {
               child: _cubit.postsFavoritesHave.isEmpty
                   ? SizedBox(
                   height: MediaQuery.of(context).size.height * 0.7,
-                  child:  Center(child: Text('SavedIsIEmpty'.tr())))
+                  child:  Center(child: Text('FavoritesIsIEmpty'.tr())))
                   : Column(
                 children: List.generate(
                     _cubit.postsFavoritesHave.length,
