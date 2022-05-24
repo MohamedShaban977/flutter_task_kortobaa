@@ -1,18 +1,14 @@
-import 'package:bloc/bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_task_kortobaa/core/helper/local/cache_helper.dart';
 import 'package:flutter_task_kortobaa/core/helper/local/hive_helper.dart';
-import 'package:flutter_task_kortobaa/core/shared/route/custom_route.dart';
 import 'package:flutter_task_kortobaa/core/shared/route/magic_router.dart';
 import 'package:flutter_task_kortobaa/core/utils/colors.dart';
 import 'package:flutter_task_kortobaa/core/utils/constants.dart';
 import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:flutter_task_kortobaa/services/cubit/connection/connection.dart';
-import 'package:flutter_task_kortobaa/view/authentication/login/login_view.dart';
-import 'package:flutter_task_kortobaa/view/layout_app/layout_app.dart';
 import 'package:flutter_task_kortobaa/view/splash/splash_view.dart';
 import 'package:flutter_task_kortobaa/widget/material_builder_widget.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
@@ -85,7 +81,7 @@ class MyApp extends StatelessWidget {
         builder: (context, child) => MaterialBuilderWidget(child!),
 
         /// initial Screen
-        home:SplashView(uId: uId),
+        home: const SplashView(),
       ),
     );
   }

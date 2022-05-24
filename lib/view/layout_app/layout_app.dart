@@ -9,7 +9,6 @@ import 'package:flutter_task_kortobaa/widget/custom_buttons.dart';
 import 'package:flutter_task_kortobaa/widget/toast_and_snackbar.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-
 import '../../widget/custom_drawer.dart';
 import 'home/home_view.dart';
 import 'my_account/my_account.dart';
@@ -56,15 +55,14 @@ class _LayoutAppState extends State<LayoutApp>
             ),
           ),
           builder: (context) => WillPopScope(
-           onWillPop: ()async{
-             if (_tabController.index != 0) {
-               _tabController.index = 0;
-               return false;
-             }
-             else {
-               return true;
-             }
-           },
+            onWillPop: () async {
+              if (_tabController.index != 0) {
+                _tabController.index = 0;
+                return false;
+              } else {
+                return true;
+              }
+            },
             child: Scaffold(
               appBar: buildAppBar(),
               drawer: CustomDrawer(

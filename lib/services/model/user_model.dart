@@ -1,6 +1,5 @@
 class UserModel {
-  String? uId, email, firstName, lastName ,
-  image ,imageCover;
+  String? uId, email, firstName, lastName, image, imageCover;
 
   UserModel(
       {this.uId,
@@ -9,8 +8,6 @@ class UserModel {
       this.lastName,
       this.image,
       this.imageCover});
-
-
 
   UserModel.fromJson(Map<String, dynamic> json) {
     email = json['email'];

@@ -48,7 +48,7 @@ class CustomButtonArgonAnimation extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .button!
-                .apply(color: textColors ?? MyColors.colorWhite)),
+                .apply(color: textColors ?? Colors.white)),
       ),
     );
   }

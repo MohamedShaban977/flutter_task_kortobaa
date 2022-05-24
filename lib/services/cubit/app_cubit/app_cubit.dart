@@ -45,13 +45,21 @@ class AppCubit extends Cubit<AppState> {
   late DocumentSnapshot _lastDocument;
 
   getPost() async {
-    await _firestore.collection(Coll_Posts).limit(_limit).get().then((value) {
+    await _firestore
+        .collection(Coll_Posts)
+        .orderBy('dateTime', descending: true)
+        .limit(_limit)
+        .get()
+        .then((value) {
       for (var element in value.docs) {
         posts.add(PostModel.fromJson(element.data()));
+        print(element.data()['dateTime']);
       }
       _lastDocument = value.docs.last;
       emit(GetPostSuccessState());
     }).catchError((error) {
+      print(error.toString());
+
       emit(GetPostErrorState());
     });
 
@@ -69,6 +77,7 @@ class AppCubit extends Cubit<AppState> {
     await _firestore
         .collection(Coll_Posts)
         .startAfterDocument(_lastDocument)
+        .orderBy('dateTime', descending: true)
         .limit(_limit)
         .get()
         .then((value) {
@@ -262,7 +271,7 @@ class AppCubit extends Cubit<AppState> {
       uId: userModel.uId,
       name: '${userModel.firstName} ${userModel.lastName}',
       imageUser: userModel.image,
-      dateTime: DateTime.now().toString(),
+      dateTime: Timestamp.now(),
       text: text,
       imagePost: postImageUrl ?? '',
     );
@@ -278,7 +287,7 @@ class AppCubit extends Cubit<AppState> {
               uId: userModel.uId,
               name: '${userModel.firstName} ${userModel.lastName}',
               imageUser: userModel.image,
-              dateTime: DateTime.now().toString(),
+              dateTime: Timestamp.now(),
               text: text,
               imagePost: postImageUrl ?? '',
               idPost: value.id,
@@ -288,7 +297,7 @@ class AppCubit extends Cubit<AppState> {
               )).toJson())
           .then((value) async {
         posts.clear();
-         getPost();
+        getPost();
         deleteImage(EnumSelectImage.IMGPOS.name);
       });
 

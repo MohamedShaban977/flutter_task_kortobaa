@@ -1,70 +1,7 @@
-// class PostModel {
-//   String? name, uId, idPost, imageUser, text, imagePost, dateTime;
-//
-//   LikesModel? likes;
-//
-//   PostModel(
-//       {this.name,
-//       this.uId,
-//       this.idPost,
-//       this.imageUser,
-//       this.dateTime,
-//       this.text,
-//       this.likes,
-//       this.imagePost});
-//
-//   PostModel.fromJson(Map<String, dynamic> json) {
-//     name = json['name'];
-//     uId = json['uId'];
-//     idPost = json['idPost'];
-//     imageUser = json['imageUser'];
-//     dateTime = json['dateTime'];
-//     text = json['text'];
-//     imagePost = json['imagePost'];
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['uId'] = uId;
-//     data['idPost'] = idPost;
-//     data['name'] = name;
-//     data['imageUser'] = imageUser;
-//     data['dateTime'] = dateTime;
-//     data['imagePost'] = imagePost;
-//     data['text'] = text;
-//     return data;
-//   }
-// }
-//
-// class LikesModel {
-//   bool? isLike;
-//
-//   List<String>? likesUserId;
-//
-//   LikesModel.fromJson(Map<String, dynamic> json) {
-//     isLike = json['isLike'];
-//
-//     if (json['likesUserId'] != null) {
-//       likesUserId = [];
-//       json['likesUserId'].forEach((v) {
-//         likesUserId!.add(v);
-//       });
-//     }
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = <String, dynamic>{};
-//     data['isLike'] = isLike;
-//     if (likesUserId != null) {
-//       data['likesUserId'] = likesUserId?.map((v) => v).toList();
-//     }
-//
-//     return data;
-//   }
-// }
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class PostModel {
-  String? dateTime;
+  Timestamp? dateTime;
   String? idPost;
   String? imagePost;
   String? imageUser;

@@ -7,7 +7,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final Function()? onTap;
 
-  final String? hint, label,initialValue;
+  final String? hint, label, initialValue;
   final bool obscureText, readOnly;
   final double? width;
   final int? maxLength, maxLines;
@@ -51,7 +51,10 @@ class CustomTextField extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Text(
               label!,
-              style: Theme.of(context).textTheme.subtitle1!.apply(color: Theme.of(context).focusColor),
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .apply(color: Theme.of(context).focusColor),
             ),
           ),
           SizedBox(height: heightSize * 0.01),
@@ -70,13 +73,15 @@ class CustomTextField extends StatelessWidget {
             obscureText: obscureText,
             cursorColor: MyColors.colorPrimary,
             readOnly: readOnly,
-            style: Theme.of(context).textTheme.subtitle1,//!.copyWith(height:  1.0),
-
-            initialValue:initialValue ,
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1!
+                .copyWith(color: MyColors.colorPrimary),
+            initialValue: initialValue,
             cursorHeight: 25.0,
             decoration: InputDecoration(
-
-              fillColor: MyColors.colorBackgroundTextField, //Theme.of(context).canvasColor,
+              fillColor: MyColors.colorBackgroundTextField,
+              //Theme.of(context).canvasColor,
               filled: true,
               hintText: hint,
               suffixIcon: icon,
@@ -84,22 +89,19 @@ class CustomTextField extends StatelessWidget {
               hintStyle: Theme.of(context).textTheme.caption,
 
               focusedBorder: OutlineInputBorder(
-borderSide: const BorderSide(color: Colors.transparent),
+                borderSide: const BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.circular(10),
-
               ),
 
               ///
               enabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.transparent),
-
                 borderRadius: BorderRadius.circular(10),
               ),
 
               ///
               disabledBorder: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.transparent),
-
                 borderRadius: BorderRadius.circular(10),
               ),
 
@@ -108,7 +110,6 @@ borderSide: const BorderSide(color: Colors.transparent),
               ///error border
               border: OutlineInputBorder(
                 borderSide: const BorderSide(color: Colors.transparent),
-
                 borderRadius: BorderRadius.circular(10),
               ),
             ),

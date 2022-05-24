@@ -4,12 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_task_kortobaa/core/shared/route/magic_router.dart';
 import 'package:flutter_task_kortobaa/core/shared/translation/Translation.dart';
 import 'package:flutter_task_kortobaa/core/utils/colors.dart';
-import 'package:flutter_task_kortobaa/core/utils/style.dart';
 import 'package:flutter_task_kortobaa/services/cubit/auth_cubit/auth_cubit.dart';
 import 'package:flutter_task_kortobaa/view/authentication/login/login_view.dart';
 import 'package:flutter_task_kortobaa/widget/toast_and_snackbar.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({Key? key}) : super(key: key);
@@ -37,7 +35,6 @@ class SettingsView extends StatelessWidget {
             child: BlocConsumer<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is LogoutSuccessState) {
-
                   MagicRouter.navigateAndPopAll(LoginView());
                 }
                 if (state is LogoutErrorState) {
@@ -47,8 +44,9 @@ class SettingsView extends StatelessWidget {
               builder: (context, state) {
                 return ConditionalBuilder(
                   condition: state is! LogoutLoadingState,
-                  fallback: (context)=>const CircularProgressIndicator(color: MyColors.colorOrange) ,
-                  builder: (context)=> buildButtonElevated(
+                  fallback: (context) => const CircularProgressIndicator(
+                      color: MyColors.colorOrange),
+                  builder: (context) => buildButtonElevated(
                     context,
                     text: 'Logout'.tr(),
                     onPressed: () => AuthCubit.get(context).logout(),

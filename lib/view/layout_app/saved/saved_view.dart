@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-import '../home/home_view.dart';
+import '../../../widget/Custom_card_post.dart';
 
 // ignore: must_be_immutable
 class SavedView extends StatelessWidget {
@@ -21,7 +21,7 @@ class SavedView extends StatelessWidget {
             title: Text('Saved'.tr()),
           ),
           body: RefreshIndicator(
-            onRefresh: ()async{
+            onRefresh: () async {
               _cubit.postsSavedHave.clear();
               _cubit.getPostsSavedInHave();
             },
@@ -31,24 +31,28 @@ class SavedView extends StatelessWidget {
               child: _cubit.postsSavedHave.isEmpty
                   ? SizedBox(
                       height: MediaQuery.of(context).size.height * 0.7,
-                      child:  Center(child: Text('SavedIsIEmpty'.tr())))
-                  : Column(
-                      children: List.generate(
-                          _cubit.postsSavedHave.length,
-                          (index) => Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: CardPast(
-                                  isSaved: true,
-                                  postModel: _cubit.postsSavedHave[index],
-                                  index: index,
-                                  cubit: _cubit,
-                                ),
-                              )),
-                    ),
+                      child: Center(child: Text('SavedIsIEmpty'.tr())))
+                  : buildListViewPosts(),
             ),
           ),
         );
       },
+    );
+  }
+
+  Column buildListViewPosts() {
+    return Column(
+      children: List.generate(
+          _cubit.postsSavedHave.length,
+          (index) => Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CardPast(
+                  isSaved: true,
+                  postModel: _cubit.postsSavedHave[index],
+                  index: index,
+                  cubit: _cubit,
+                ),
+              )),
     );
   }
 }

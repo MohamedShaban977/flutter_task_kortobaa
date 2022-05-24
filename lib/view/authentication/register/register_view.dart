@@ -55,7 +55,7 @@ class RegisterView extends StatelessWidget {
     if (state is CreateUserSuccessState) {
       AppCubit.get(context).userModel = state.response;
       CacheHelper.saveData(key: Shared_Uid, value: state.response.uId)
-          .then((value) => MagicRouter.navigateAndPopAll(LayoutApp()))
+          .then((value) => MagicRouter.navigateAndPopAll(const LayoutApp()))
           .catchError((error) => print(error.toString()));
     }
   }
@@ -163,7 +163,6 @@ class RegisterView extends StatelessWidget {
   }
 
   registerFun(context, startLoading, stopLoading, state) async {
-
     if (state == ButtonState.Idle) {
       _formKey.currentState!.save();
       FocusScope.of(context).unfocus();

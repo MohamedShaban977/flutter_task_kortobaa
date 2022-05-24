@@ -1,20 +1,14 @@
-
 import 'package:localize_and_translate/localize_and_translate.dart';
 
 import '../../helper/local/cache_helper.dart';
 import '../../utils/constants.dart';
-// import '../helper/local/cache_helper.dart';
-
 
 class TranslateLang {
-
   static Future translatorInit() async => await translator.init(
-        localeType: LocalizationDefaultType.device,
-        languagesList: <String>[langAR, langEN],
-        assetsDirectory: 'assets/lang/',
-        language: currentLang ?? langAR
-        );
-
+      localeType: LocalizationDefaultType.device,
+      languagesList: <String>[langAR, langEN],
+      assetsDirectory: 'assets/lang/',
+      language: currentLang ?? langAR);
 
   static void changeLang(context) async {
     await translator.setNewLanguage(
@@ -32,14 +26,13 @@ class TranslateLang {
     print(translator.activeLanguageCode);
   }
 
-  static String langApi(){
-    if(translator.activeLanguageCode ==langAR) {
+  static String langApi() {
+    if (translator.activeLanguageCode == langAR) {
       return 'ar-EG';
-    } else if(translator.activeLanguageCode==langEN) {
+    } else if (translator.activeLanguageCode == langEN) {
       return 'en-US';
     } else {
       return 'ar-EG';
     }
-
   }
 }

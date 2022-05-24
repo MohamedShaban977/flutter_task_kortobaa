@@ -49,7 +49,7 @@ class LoginView extends StatelessWidget {
 
     if (state is LoginSuccessState) {
       CacheHelper.saveData(key: Shared_Uid, value: state.response.uId)
-          .then((value) => MagicRouter.navigateAndPopAll(LayoutApp()))
+          .then((value) => MagicRouter.navigateAndPopAll(const LayoutApp()))
           .catchError((error) {
         print(error.toString());
       });

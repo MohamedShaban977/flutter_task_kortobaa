@@ -3,7 +3,6 @@ import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:localize_and_translate/localize_and_translate.dart';
 
-
 import '../core/utils/colors.dart';
 
 class DialogSelectImage extends StatelessWidget {
@@ -30,7 +29,7 @@ class DialogSelectImage extends StatelessWidget {
               backgroundColor: MyColors.colorOrange,
               child: Icon(
                 Icons.image_rounded,
-                color: MyColors.colorWhite,
+                color: Colors.white,
               ),
             ),
           ),
@@ -43,7 +42,7 @@ class DialogSelectImage extends StatelessWidget {
               backgroundColor: MyColors.colorOrange,
               child: Icon(
                 Icons.camera_alt,
-                color: MyColors.colorWhite,
+                color: Colors.white,
               ),
             ),
           ),
@@ -53,16 +52,18 @@ class DialogSelectImage extends StatelessWidget {
   }
 }
 
-void alertDialogImagePicker( context, {required String imageType}) {
+void alertDialogImagePicker(context, {required String imageType}) {
   showDialog(
     context: context,
     builder: (context) => DialogSelectImage(
       onCameraClicked: () {
-        AppCubit.get(context).getImage( context,imageType:imageType , src: ImageSource.camera);
+        AppCubit.get(context)
+            .getImage(context, imageType: imageType, src: ImageSource.camera);
         Navigator.pop(context);
       },
       onGalleryClicked: () {
-        AppCubit.get(context).getImage( context,imageType: imageType, src: ImageSource.gallery);
+        AppCubit.get(context)
+            .getImage(context, imageType: imageType, src: ImageSource.gallery);
         Navigator.pop(context);
       },
     ),

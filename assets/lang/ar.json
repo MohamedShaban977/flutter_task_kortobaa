@@ -32,19 +32,18 @@
   "EditProfile": "تعديل بياناتي",
   "Save": "حفظ",
   "Logout": "تسجيل خروج",
-
   "Discard": "تجاهل",
   "Post": "نشر",
   "UploadImage": "رفع صورة",
-
   "WriteCommentAboutThis": "اكتب تعليقا حول هذا",
   "SomethingWentWrong": "هناك خطأ ما",
   "Success": "تم بنجاح",
   "SavedSuc": "تم الحفظ",
   "UnSaved": "تم الغاء الحفظ",
-  "SavedIsIEmpty" : "لا يوجد محفوظات",
-  "FavoritesIsIEmpty" : "لا يوجد مفضلة",
-  "NotFoundData":"لا يوجد بيانات",
+  "SavedIsIEmpty": "لا يوجد محفوظات",
+  "FavoritesIsIEmpty": "لا يوجد مفضلة",
+  "NotFoundData": "لا يوجد بيانات",
   "NoInternetConnection": "لا يوجد إتصال بالانترنت !",
-  "TryAgain":"اعادة المحاولة"
+  "TryAgain": "اعادة المحاولة",
+  "ChoosePictureFrom": "اختر صورة من"
 }

@@ -25,8 +25,8 @@ class HiveHelper {
   }
 
   static Future<List<PostModel>> getPostsSaved() async {
-    late List<PostModel> postModel =[];
-   postModel= savedPostsDB.values.map((e) => PostModel.fromHive(e)).toList();
+    late List<PostModel> postModel = [];
+    postModel = savedPostsDB.values.map((e) => PostModel.fromHive(e)).toList();
 
     return postModel;
   }
@@ -40,15 +40,16 @@ class HiveHelper {
     await savedPostsDB.delete(id);
   }
 
-
   static Future<List<PostModel>> getPostsFavorites() async {
-    late List<PostModel> postModel =[];
-    postModel= favoritesPostsDB.values.map((e) => PostModel.fromHive(e)).toList();
+    late List<PostModel> postModel = [];
+    postModel =
+        favoritesPostsDB.values.map((e) => PostModel.fromHive(e)).toList();
 
     return postModel;
   }
 
-  static Future<void> cacheFavoritesPostById(String id, PostModel postModel) async {
+  static Future<void> cacheFavoritesPostById(
+      String id, PostModel postModel) async {
     final jsonNewsModel = postModel.toJson();
     await favoritesPostsDB.put(id, jsonNewsModel);
   }

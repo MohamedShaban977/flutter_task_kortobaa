@@ -19,7 +19,6 @@ class MaterialBuilderWidget extends StatelessWidget {
       builder: (context, state) => (state is ConnectionLost)
           ? Scaffold(
               body: SizedBox(
-                // color: Theme.of(context).focusColor,
                 width: double.infinity,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -27,16 +26,14 @@ class MaterialBuilderWidget extends StatelessWidget {
                     Icon(
                       Icons.signal_wifi_off_rounded,
                       color: Theme.of(context).focusColor,
-                      size: MediaQuery.of(context).size.height*0.2,
+                      size: MediaQuery.of(context).size.height * 0.2,
                     ),
                     const SizedBox(height: 20),
-
                     Text(
                       'NoInternetConnection'.tr(),
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     const SizedBox(height: 20),
-
                     CustomButtonArgonAnimation(
                       width: MediaQuery.of(context).size.width * 0.5,
                       height: 70.0,

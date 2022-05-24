@@ -21,14 +21,17 @@ class CustomDialogCreateNewPost extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       insetPadding: const EdgeInsets.all(5),
-      child: Container(
-        width: double.infinity,
-        height: MediaQuery.of(context).size.height * 0.6,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.0),
-            color: Theme.of(context).dialogBackgroundColor),
-        padding: const EdgeInsets.all(8.0),
-        child: buildContentCreatePost(),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Container(
+          width: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.65,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: Theme.of(context).dialogBackgroundColor),
+          padding: const EdgeInsets.all(8.0),
+          child: buildContentCreatePost(),
+        ),
       ),
     );
   }
@@ -145,7 +148,7 @@ class CustomDialogCreateNewPost extends StatelessWidget {
       onTap: () => alertDialogImagePicker(context,
           imageType: EnumSelectImage.IMGPOS.name),
       child: SizedBox(
-        height: constraints.maxHeight * 0.5,
+        height: constraints.maxHeight * 0.4,
         width: double.infinity,
         child: Card(
           shape:

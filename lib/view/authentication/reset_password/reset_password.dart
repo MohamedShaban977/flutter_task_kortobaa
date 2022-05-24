@@ -126,7 +126,7 @@ class ResetPassword extends StatelessWidget {
       ),
       iconTheme: const IconThemeData(color: MyColors.colorPrimary),
       actionsIconTheme: const IconThemeData(color: MyColors.colorPrimary),
-      toolbarHeight: MediaQuery.of(context).size.height*0.1,
+      toolbarHeight: MediaQuery.of(context).size.height * 0.1,
       centerTitle: true,
       elevation: 0.0,
       backgroundColor: Colors.transparent,

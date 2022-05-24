@@ -16,7 +16,7 @@ import '../../../../widget/custom_buttons.dart';
 import '../../../../widget/custom_text_field.dart';
 import '../../../../widget/dialog_select_image.dart';
 
-
+// ignore: must_be_immutable
 class EditProfile extends StatelessWidget {
   EditProfile({Key? key}) : super(key: key);
 

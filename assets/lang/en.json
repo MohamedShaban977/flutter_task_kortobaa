@@ -1,80 +1,49 @@
 {
   "buttonLang": "عربى",
-
   "Login": "Login",
-
   "UserNameOrEmail": "ُEmail or user name",
   "EmailIsEmpty": "Please enter an email or user name",
   "InvalidEmailFormat": "Please Enter Email correctly (mail@yahoo.com)",
-
   "Password": "Password",
   "PasswordEmpty": "Password is Empty",
   "InvalidPassword": "Invalid password format",
-
   "Forget": "Forget Password?",
   "ResetPassword": "Reset Password",
-
-  "OR":"OR",
+  "OR": "OR",
   "RegisterNewAccount": "Register a new account",
   "CheckAccount": "If you don't have an account, sign up",
-
   "Register": "Register",
   "Email": "Email",
   "ConfirmPassword": "Confirm Password",
   "ConfirmPasswordEmpty": "Confirm Password is empty",
   "PasswordNotMatch": "Confirm password does not match",
-
-
-  "FirstName":"First name",
+  "FirstName": "First name",
   "FirstNameEmpty": "First name is empty",
-
   "LastName": "Last name",
   "LastNameEmpty": "Last name is empty",
-
   "Home": "Home",
   "MyAccount": "My Account",
   "Saved": "Saved",
-
   "PleaseVerifyYourEmail": "Please verify your email",
-  "CheckYourEmail":"Check your email",
-
+  "CheckYourEmail": "Check your email",
   "Send": "Send",
-
   "Favorites": "Favorites",
-  "FavoritesIsIEmpty" : "Favorites is empty",
-
+  "FavoritesIsIEmpty": "Favorites is empty",
   "Settings": "Settings",
   "EditProfile": "Edit Profile",
   "Save": "Save",
-
   "Logout": "Logout",
-
   "Discard": "Discard",
   "Post": "Post",
   "UploadImage": "UploadImage",
   "WriteCommentAboutThis": "Write a comment about this",
-
   "SomethingWentWrong": "Something went wrong",
   "Success": "Success",
-
   "SavedSuc": "Saved Success",
   "UnSaved": "UnSaved",
-  "SavedIsIEmpty" : "Saved is empty",
-
-  "NotFoundData":"Not Found Data",
-
+  "SavedIsIEmpty": "Saved is empty",
+  "NotFoundData": "Not Found Data",
   "NoInternetConnection": "No internet connection !",
-  "TryAgain":"try again"
-
-
-
-
-
-
-
-
-
-
-
-
+  "TryAgain": "try again",
+  "ChoosePictureFrom": "Choose picture from"
 }

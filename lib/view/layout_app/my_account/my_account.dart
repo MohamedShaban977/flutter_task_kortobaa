@@ -10,8 +10,6 @@ import '../../../services/cubit/app_cubit/app_cubit.dart';
 import '../favorite/my_favorites.dart';
 import 'edit_profile/edit_profile.dart';
 
-
-
 // ignore: must_be_immutable
 class MyAccountView extends StatelessWidget {
   MyAccountView({Key? key}) : super(key: key);

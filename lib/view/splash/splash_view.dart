@@ -12,20 +12,20 @@ import 'package:flutter_task_kortobaa/view/layout_app/layout_app.dart';
 import '../../core/shared/route/magic_router.dart';
 
 class SplashView extends StatefulWidget {
-  final String? uId;
 
-  const SplashView({Key? key, this.uId}) : super(key: key);
+
+  const SplashView({Key? key}) : super(key: key);
 
   @override
   State<SplashView> createState() => _SplashViewState();
 }
 
 class _SplashViewState extends State<SplashView> {
-  late String? uId2 ;
+  late String? uId;
 
   Future<void> getCategories() async {
-    uId2 = CacheHelper.getData(key: Shared_Uid);
-    if (uId2 == null) {
+    uId = CacheHelper.getData(key: Shared_Uid);
+    if (uId == null) {
       Timer(Duration.zero, () => MagicRouter.navigateAndPopAll(LoginView()));
     } else {
       await AppCubit.get(context).getPost();
