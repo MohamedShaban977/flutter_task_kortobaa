@@ -149,7 +149,9 @@ class RegisterView extends StatelessWidget {
                       text: 'Register'.tr(),
                       color: MyColors.colorOrange,
                       width: deviseSize!.width,
-                      onTap: registerFun),
+                      onTap: (startLoading, stopLoading, state) async =>
+                          registerFun(
+                              context, startLoading, stopLoading, state)),
                   const SizedBox(height: 15.0),
                 ],
               ),
@@ -160,9 +162,11 @@ class RegisterView extends StatelessWidget {
     );
   }
 
-  registerFun(startLoading, stopLoading, state) async {
-    _formKey.currentState!.save();
+  registerFun(context, startLoading, stopLoading, state) async {
+
     if (state == ButtonState.Idle) {
+      _formKey.currentState!.save();
+      FocusScope.of(context).unfocus();
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
         startLoading();

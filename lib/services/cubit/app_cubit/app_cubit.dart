@@ -39,14 +39,12 @@ class AppCubit extends Cubit<AppState> {
     });
   }
 
-
   List<PostModel> posts = [];
   bool loadingPost = true, gettingMorePosts = false, morePostsAvailable = true;
   int _limit = 3;
   late DocumentSnapshot _lastDocument;
 
   getPost() async {
-
     await _firestore.collection(Coll_Posts).limit(_limit).get().then((value) {
       for (var element in value.docs) {
         posts.add(PostModel.fromJson(element.data()));
@@ -55,22 +53,19 @@ class AppCubit extends Cubit<AppState> {
       emit(GetPostSuccessState());
     }).catchError((error) {
       emit(GetPostErrorState());
-
     });
 
-
-      loadingPost = false;
-
+    loadingPost = false;
   }
 
   getMorePosts() async {
-    if(!morePostsAvailable){
+    if (!morePostsAvailable) {
       return;
     }
-    if(gettingMorePosts){
+    if (gettingMorePosts) {
       return;
     }
-    gettingMorePosts =true;
+    gettingMorePosts = true;
     await _firestore
         .collection(Coll_Posts)
         .startAfterDocument(_lastDocument)
@@ -80,21 +75,19 @@ class AppCubit extends Cubit<AppState> {
       for (var element in value.docs) {
         posts.add(PostModel.fromJson(element.data()));
       }
-      if(value.docs.length<_limit){
-        morePostsAvailable =false;
+      if (value.docs.length < _limit) {
+        morePostsAvailable = false;
       }
       _lastDocument = value.docs.last;
       emit(GetPostSuccessState());
-
     }).catchError((error) {
       emit(GetPostErrorState());
-
     });
 
-    gettingMorePosts =false;
-
+    gettingMorePosts = false;
   }
-  onRefreshGetPost(){
+
+  onRefreshGetPost() {
     loadingPost = true;
     gettingMorePosts = false;
     morePostsAvailable = true;
@@ -102,6 +95,7 @@ class AppCubit extends Cubit<AppState> {
     posts.clear();
     getPost();
   }
+
   /// Choose Image
   File? imageProfileFile, coverImageFile, postImageFile;
   String? imageProfilePathName, coverImagePathName, postImagePathName;
@@ -228,7 +222,6 @@ class AppCubit extends Cubit<AppState> {
   updateUserData({
     required String? firstName,
     required String? lastName,
-    required String? email,
   }) async {
     emit(UpdateUserLoadingState());
     if (imageProfileFile != null) {
@@ -241,7 +234,7 @@ class AppCubit extends Cubit<AppState> {
     final modal = UserModel(
       lastName: lastName ?? userModel.lastName,
       firstName: firstName ?? userModel.firstName,
-      email: email ?? userModel.email,
+      email: userModel.email,
       uId: userModel.uId,
       image: imageProfileUrl ?? userModel.image,
       imageCover: coverImageUrl ?? userModel.imageCover,
@@ -278,19 +271,25 @@ class AppCubit extends Cubit<AppState> {
         .collection(Coll_Posts)
         .add(postModel.toJson())
         .then((value) async {
-      await _firestore.collection(Coll_Posts).doc(value.id).update(PostModel(
-          uId: userModel.uId,
-          name: '${userModel.firstName} ${userModel.lastName}',
-          imageUser: userModel.image,
-          dateTime: DateTime.now().toString(),
-          text: text,
-          imagePost: postImageUrl ?? '',
-          idPost: value.id,
-          likes: Likes(
-            likesUserId: [],
-            isLike: false,
-          )).toJson());
-      deleteImage(EnumSelectImage.IMGPOS.name);
+      await _firestore
+          .collection(Coll_Posts)
+          .doc(value.id)
+          .update(PostModel(
+              uId: userModel.uId,
+              name: '${userModel.firstName} ${userModel.lastName}',
+              imageUser: userModel.image,
+              dateTime: DateTime.now().toString(),
+              text: text,
+              imagePost: postImageUrl ?? '',
+              idPost: value.id,
+              likes: Likes(
+                likesUserId: [],
+                isLike: false,
+              )).toJson())
+          .then((value) async {
+        await getPost();
+        deleteImage(EnumSelectImage.IMGPOS.name);
+      });
 
       emit(CreatePostSuccessState());
     }).catchError((error) {
@@ -315,11 +314,9 @@ class AppCubit extends Cubit<AppState> {
   // }
 
   updateLikePost({required PostModel postPosition}) async {
-    if (postPosition.likes!.likesUserId!.contains(userModel.uId))
-    {
+    if (postPosition.likes!.likesUserId!.contains(userModel.uId)) {
       postPosition.likes!.likesUserId!.remove(userModel.uId);
-    }
-    else {
+    } else {
       postPosition.likes!.likesUserId!.add(userModel.uId!);
     }
 
@@ -366,7 +363,8 @@ class AppCubit extends Cubit<AppState> {
   }
 
   deletePostInSavedHive(int index) async {
-    await HiveHelper.deleteSavedPostById(postsSavedHave[index].idPost!).then((value) {
+    await HiveHelper.deleteSavedPostById(postsSavedHave[index].idPost!)
+        .then((value) {
       emit(DeletePostsInSavedHaveSuccessState());
       ToastAndSnackBar.toastSuccess(message: 'UnSaved'.tr());
     }).catchError((error) {
@@ -375,25 +373,22 @@ class AppCubit extends Cubit<AppState> {
     getPostsSavedInHave();
   }
 
-  savedOrDeletePostInHave(int index)async {
-    if (HiveHelper.savedPostsDB.containsKey(posts[index].idPost))
-    {
-     await deletePostInSavedHive(index);
+  savedOrDeletePostInHave(int index) async {
+    if (HiveHelper.savedPostsDB.containsKey(posts[index].idPost)) {
+      await deletePostInSavedHive(index);
     } else {
-     await savedPostInSavedHive(index);
+      await savedPostInSavedHive(index);
     }
     getPostsSavedInHave();
   }
 
-   List<PostModel> postsSavedHave =[];
+  List<PostModel> postsSavedHave = [];
 
   getPostsSavedInHave() async {
     postsSavedHave = await HiveHelper.getPostsSaved();
   }
 
-
   savePostInFavoritesHive(PostModel postModel) async {
-
     await HiveHelper.cacheFavoritesPostById(
       postModel.idPost!,
       postModel,
@@ -406,8 +401,7 @@ class AppCubit extends Cubit<AppState> {
   }
 
   deletePostInFavoritesHive(PostModel postModel) async {
-    await HiveHelper.deleteFavoritesPostById(postModel.idPost!)
-        .then((value) {
+    await HiveHelper.deleteFavoritesPostById(postModel.idPost!).then((value) {
       emit(DeletePostsInFavoritesHaveSuccessState());
       ToastAndSnackBar.toastSuccess(message: 'UnSaved'.tr());
     }).catchError((error) {
@@ -416,9 +410,8 @@ class AppCubit extends Cubit<AppState> {
     getPostsFavoritesInHave();
   }
 
-  favoritesOrDeletePostInHave(PostModel postModel)async {
-    if (HiveHelper.favoritesPostsDB.containsKey(postModel.idPost))
-    {
+  favoritesOrDeletePostInHave(PostModel postModel) async {
+    if (HiveHelper.favoritesPostsDB.containsKey(postModel.idPost)) {
       await deletePostInFavoritesHive(postModel);
     } else {
       await savePostInFavoritesHive(postModel);
@@ -426,7 +419,7 @@ class AppCubit extends Cubit<AppState> {
     getPostsFavoritesInHave();
   }
 
-  List<PostModel> postsFavoritesHave =[];
+  List<PostModel> postsFavoritesHave = [];
 
   getPostsFavoritesInHave() async {
     postsFavoritesHave = await HiveHelper.getPostsFavorites();

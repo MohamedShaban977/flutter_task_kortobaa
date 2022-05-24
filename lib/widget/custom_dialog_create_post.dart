@@ -10,7 +10,6 @@ import '../services/cubit/app_cubit/app_cubit.dart';
 import 'custom_buttons.dart';
 import 'dialog_select_image.dart';
 
-
 // ignore: must_be_immutable
 class CustomDialogCreateNewPost extends StatelessWidget {
   CustomDialogCreateNewPost({Key? key}) : super(key: key);
@@ -81,8 +80,10 @@ class CustomDialogCreateNewPost extends StatelessWidget {
           color: MyColors.colorOrange,
           onTap: (start, stop, state) async {
             start();
+            FocusScope.of(context).unfocus();
+
             await Future.sync(
-                    () => AppCubit.get(context).createPost(text: controller!.text));
+                () => AppCubit.get(context).createPost(text: controller!.text));
             stop();
           },
         ),
@@ -148,30 +149,30 @@ class CustomDialogCreateNewPost extends StatelessWidget {
         width: double.infinity,
         child: Card(
           shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           elevation: 0.0,
           color: MyColors.colorPrimary.withOpacity(0.2),
           child: AppCubit.get(context).postImageFile != null
               ? Image.file(
-            AppCubit.get(context).postImageFile!,
-            fit: BoxFit.cover,
-          )
+                  AppCubit.get(context).postImageFile!,
+                  fit: BoxFit.cover,
+                )
               : Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.camera_alt,
-                size: 70,
-                color: MyColors.colorPrimary.withOpacity(0.4),
-              ),
-              Text(
-                'UploadImage'.tr(),
-                style: Theme.of(context).textTheme.subtitle2!.copyWith(
-                    color: MyColors.colorPrimary.withOpacity(0.5)),
-              ),
-            ],
-          ),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.camera_alt,
+                      size: 70,
+                      color: MyColors.colorPrimary.withOpacity(0.4),
+                    ),
+                    Text(
+                      'UploadImage'.tr(),
+                      style: Theme.of(context).textTheme.subtitle2!.copyWith(
+                          color: MyColors.colorPrimary.withOpacity(0.5)),
+                    ),
+                  ],
+                ),
         ),
       ),
     );

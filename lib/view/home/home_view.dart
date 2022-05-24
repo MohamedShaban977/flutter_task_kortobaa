@@ -149,6 +149,7 @@ class CardPast extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 10.0),
             //Top Row
@@ -232,8 +233,7 @@ class CardPast extends StatelessWidget {
               await cubit.updateLikePost(postPosition: postModel);
               if (isFavorite) {
                 cubit.deletePostInFavoritesHive(postModel);
-              }
-              else {
+              } else {
                 cubit.favoritesOrDeletePostInHave(postModel);
               }
             },
@@ -241,17 +241,18 @@ class CardPast extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             child: Padding(
                 padding: const EdgeInsets.all(5.0),
-                child: postModel.likes!.likesUserId!.contains(cubit.userModel.uId)
-                    ? const Icon(
-                        FontAwesomeIcons.solidThumbsUp,
-                        size: 19,
-                        color: MyColors.colorDrawre,
-                      )
-                    : Icon(
-                        FontAwesomeIcons.thumbsUp,
-                        size: 19,
-                        color: MyColors.colorDrawre.withOpacity(0.5),
-                      )),
+                child:
+                    postModel.likes!.likesUserId!.contains(cubit.userModel.uId)
+                        ? const Icon(
+                            FontAwesomeIcons.solidThumbsUp,
+                            size: 19,
+                            color: MyColors.colorDrawre,
+                          )
+                        : Icon(
+                            FontAwesomeIcons.thumbsUp,
+                            size: 19,
+                            color: MyColors.colorDrawre.withOpacity(0.5),
+                          )),
           ),
           Container(
               decoration: BoxDecoration(
@@ -276,15 +277,16 @@ class CardPast extends StatelessWidget {
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: CachedNetworkImage(
           imageUrl: postModel.imagePost!,
-          height: 200,
+          height: deviceSize.height * 0.22,
           width: deviceSize.width,
           fit: BoxFit.cover,
         ),
       );
 
   Padding buildTextPost(context) => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0),
         child: Text(postModel.text ?? '',
+            textAlign: TextAlign.start,
             style: Theme.of(context)
                 .textTheme
                 .subtitle1!

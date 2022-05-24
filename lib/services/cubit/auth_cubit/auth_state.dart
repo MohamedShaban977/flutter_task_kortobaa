@@ -20,6 +20,13 @@ class LoginErrorState extends AuthState {
   LoginErrorState(this.error);
 }
 
+class ResetPasswordLoadingState extends AuthState {}
+class ResetPasswordSuccessState extends AuthState {}
+class ResetPasswordErrorState extends AuthState {
+   final String? error;
+   ResetPasswordErrorState(this.error);
+}
+
 class RegisterLoadingState extends AuthState {}
 class RegisterSuccessState extends AuthState {}
 class RegisterErrorState extends AuthState {

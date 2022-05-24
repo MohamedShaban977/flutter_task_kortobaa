@@ -10,6 +10,7 @@ import 'package:flutter_task_kortobaa/core/utils/validation.dart';
 import 'package:flutter_task_kortobaa/services/cubit/app_cubit/app_cubit.dart';
 import 'package:flutter_task_kortobaa/services/cubit/auth_cubit/auth_cubit.dart';
 import 'package:flutter_task_kortobaa/view/authentication/register/register_view.dart';
+import 'package:flutter_task_kortobaa/view/authentication/reset_password/reset_password.dart';
 import 'package:flutter_task_kortobaa/view/layout_app/layout_app.dart';
 import 'package:flutter_task_kortobaa/widget/custom_buttons.dart';
 import 'package:flutter_task_kortobaa/widget/custom_text_field.dart';
@@ -47,7 +48,6 @@ class LoginView extends StatelessWidget {
     }
 
     if (state is LoginSuccessState) {
-
       CacheHelper.saveData(key: Shared_Uid, value: state.response.uId)
           .then((value) => MagicRouter.navigateAndPopAll(LayoutApp()))
           .catchError((error) {
@@ -106,7 +106,8 @@ class LoginView extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       child: CustomTextButton(
                         text: 'Forget'.tr(),
-                        onPressed: () => null,
+                        onPressed: () =>
+                            MagicRouter.navigateTo(ResetPassword()),
                       ),
                     ),
 
@@ -117,7 +118,8 @@ class LoginView extends StatelessWidget {
                         text: 'Login'.tr(),
                         color: MyColors.colorOrange,
                         width: deviseSize.width,
-                        onTap: loginFun),
+                        onTap: (startLoading, stopLoading, state) => loginFun(
+                            context, startLoading, stopLoading, state)),
 
                     const SizedBox(height: 15.0),
 
@@ -159,8 +161,10 @@ class LoginView extends StatelessWidget {
     );
   }
 
-  loginFun(startLoading, stopLoading, state) async {
+  loginFun(context, startLoading, stopLoading, state) async {
     if (state == ButtonState.Idle) {
+      FocusScope.of(context).unfocus();
+
       if (_formKey.currentState!.validate()) {
         _formKey.currentState!.save();
         startLoading();

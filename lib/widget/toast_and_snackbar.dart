@@ -25,17 +25,17 @@ class ToastAndSnackBar {
       timeInSecForIosWeb: 5,
     );
   }
-  //
-  // static showSnackBarError(BuildContext context, {required String message}) {
-  //   ScaffoldMessenger.of(context).showSnackBar(
-  //     SnackBar(
-  //       content: Text(message),
-  //       backgroundColor: Colors.red,
-  //       behavior: SnackBarBehavior.floating,
-  //       duration: const Duration(seconds: 5),
-  //     ),
-  //   );
-  // }
+
+  static showSnackBarError(BuildContext context, {required String message}) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: Colors.red,
+        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 5),
+      ),
+    );
+  }
 
 
 

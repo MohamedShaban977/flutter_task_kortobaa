@@ -58,7 +58,7 @@ class AuthCubit extends Cubit<AuthState> {
       emit(RegisterSuccessState());
     }).catchError((error) {
       print(error.toString());
-      emit(RegisterErrorState('$error'));
+      emit(RegisterErrorState(error.toString().split(']').last));
     });
   }
 
@@ -89,7 +89,7 @@ class AuthCubit extends Cubit<AuthState> {
     }).catchError((error) {
       print(error.toString());
 
-      emit(CreateUserErrorState('$error'));
+      emit(CreateUserErrorState(error.toString().split(']').last));
     });
   }
 
@@ -116,7 +116,19 @@ class AuthCubit extends Cubit<AuthState> {
       }).catchError((error) {});
     }).catchError((error) {
       print(error.toString());
-      emit(LoginErrorState('$error'));
+      emit(LoginErrorState(error.toString().split(']').last));
+    });
+  }
+
+  Future<void> resetPassword(String email) async {
+    emit(ResetPasswordLoadingState());
+    await _auth.sendPasswordResetEmail(email: email).then((value) {
+      emit(ResetPasswordSuccessState());
+    }).catchError((error) {
+      print(error.toString().split(']').last);
+      print(error.toString());
+
+      emit(ResetPasswordErrorState(error.toString().split(']').last));
     });
   }
 

@@ -16,12 +16,10 @@ import '../../../widget/custom_buttons.dart';
 import '../../../widget/custom_text_field.dart';
 import '../../../widget/dialog_select_image.dart';
 
-
-
 class EditProfile extends StatelessWidget {
   EditProfile({Key? key}) : super(key: key);
 
-  String? _email, _firstName, _lastName;
+  String? _firstName, _lastName;
   late Size deviseSize;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -46,14 +44,6 @@ class EditProfile extends StatelessWidget {
               child: ListView(
                 children: [
                   buildTop(context),
-
-                  /// Email
-                  CustomTextField(
-                    onSaved: (value) => _email = value!,
-                    validator: (value) => Validation.validEmail(value!),
-                    label: 'Email'.tr(),
-                    initialValue: _cubit.userModel.email,
-                  ),
 
                   /// First Name
                   CustomTextField(
@@ -88,16 +78,27 @@ class EditProfile extends StatelessWidget {
     );
   }
 
-  Stack buildTop(context) => Stack(
-        alignment: Alignment.center,
-        clipBehavior: Clip.none,
+  Column buildTop(context) => Column(
         children: [
-          Container(
-              margin: EdgeInsets.only(bottom: deviseSize.height * 0.15 / 2),
-              child: buildCoverImage(context)),
-          Positioned(
-              top: (deviseSize.height * 0.2) - (deviseSize.height * 0.15) / 2,
-              child: buildProfileImage(context)),
+          Stack(
+            alignment: Alignment.center,
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                  margin: EdgeInsets.only(bottom: deviseSize.height * 0.15 / 2),
+                  child: buildCoverImage(context)),
+              Positioned(
+                  top: (deviseSize.height * 0.2) -
+                      (deviseSize.height * 0.15) / 2,
+                  child: buildProfileImage(context)),
+            ],
+          ),
+          const SizedBox(height: 30.0),
+          Text('${_cubit.userModel.email}',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6!
+                  .copyWith(color: MyColors.colorPrimary.withOpacity(0.6))),
         ],
       );
 
@@ -205,7 +206,6 @@ class EditProfile extends StatelessWidget {
         _formKey.currentState!.save();
         startLoading();
         await Future.sync(() => _cubit.updateUserData(
-              email: _email,
               firstName: _firstName,
               lastName: _lastName,
             ));
