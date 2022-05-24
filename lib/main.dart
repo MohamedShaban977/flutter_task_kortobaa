@@ -85,7 +85,6 @@ class MyApp extends StatelessWidget {
 
         builder: (context, child) => MaterialBuilderWidget(child!),
 
-
         /// initial Screen
         home: uId == null ? LoginView() : LayoutApp(),
 
