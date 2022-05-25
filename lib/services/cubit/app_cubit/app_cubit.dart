@@ -76,8 +76,8 @@ class AppCubit extends Cubit<AppState> {
     gettingMorePosts = true;
     await _firestore
         .collection(Coll_Posts)
-        .startAfterDocument(_lastDocument)
         .orderBy('dateTime', descending: true)
+        .startAfterDocument(_lastDocument)
         .limit(_limit)
         .get()
         .then((value) {
