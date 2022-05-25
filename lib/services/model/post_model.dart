@@ -32,7 +32,7 @@ class PostModel {
   }
 
   factory PostModel.fromHive(Map<dynamic, dynamic> json) => PostModel(
-      dateTime: json['dateTime'],
+      // dateTime: json['dateTime'].toString(),
       idPost: json['idPost'],
       imagePost: json['imagePost'],
       imageUser: json['imageUser'],
@@ -44,6 +44,20 @@ class PostModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = Map<String, dynamic>();
     data['dateTime'] = this.dateTime;
+    data['idPost'] = this.idPost;
+    data['imagePost'] = this.imagePost;
+    data['imageUser'] = this.imageUser;
+    data['name'] = this.name;
+    data['text'] = this.text;
+    data['uId'] = this.uId;
+    if (this.likes != null) {
+      data['likes'] = this.likes!.toJson();
+    }
+    return data;
+  }
+  Map<String, dynamic> toJsonHive() {
+    final Map<String, dynamic> data = Map<String, dynamic>();
+    data['dateTime'] = this.dateTime.toString();
     data['idPost'] = this.idPost;
     data['imagePost'] = this.imagePost;
     data['imageUser'] = this.imageUser;

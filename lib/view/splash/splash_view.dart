@@ -28,7 +28,9 @@ class _SplashViewState extends State<SplashView> {
     if (uId == null) {
       Timer(Duration.zero, () => MagicRouter.navigateAndPopAll(LoginView()));
     } else {
-      await AppCubit.get(context).getPost();
+      // if(AppCubit.get(context).posts ==[]) {
+      //   await AppCubit.get(context).getPost();
+      // }
       Timer(Duration.zero,
           () => MagicRouter.navigateAndPopAll(const LayoutApp()));
     }

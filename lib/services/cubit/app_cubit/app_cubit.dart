@@ -51,10 +51,12 @@ class AppCubit extends Cubit<AppState> {
         .limit(_limit)
         .get()
         .then((value) {
-      for (var element in value.docs) {
-        posts.add(PostModel.fromJson(element.data()));
-        print(element.data()['dateTime']);
-      }
+      // for (var element in value.docs) {
+      //   posts.add(PostModel.fromJson(element.data()));
+      //
+      //   print(element.data()['dateTime']);
+      // }
+      posts.addAll(value.docs.map((e) => PostModel.fromJson(e.data())).toList());
       _lastDocument = value.docs.last;
       emit(GetPostSuccessState());
     }).catchError((error) {
@@ -368,7 +370,8 @@ class AppCubit extends Cubit<AppState> {
       emit(SavePostsInSavedHaveSuccessState());
       ToastAndSnackBar.toastSuccess(message: 'SavedSuc'.tr());
     }).catchError((error) {
-      emit(SavePostsInSavedHaveErrorState(error));
+      print(error.toString());
+      emit(SavePostsInSavedHaveErrorState(error.toString()));
     });
   }
 

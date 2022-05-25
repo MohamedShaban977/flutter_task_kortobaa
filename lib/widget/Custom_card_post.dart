@@ -121,10 +121,13 @@ class CardPast extends StatelessWidget {
           InkWell(
             onTap: () async {
               await cubit.updateLikePost(postPosition: postModel);
+
               if (isFavorite) {
                 cubit.deletePostInFavoritesHive(postModel);
               } else {
-                cubit.favoritesOrDeletePostInHave(postModel);
+                if(postModel.likes!.isLike!) {
+                  cubit.favoritesOrDeletePostInHave(postModel);
+                }
               }
             },
             radius: 20.0,

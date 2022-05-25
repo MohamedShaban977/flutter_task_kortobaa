@@ -32,7 +32,7 @@ class HiveHelper {
   }
 
   static Future<void> cacheSavedPostById(String id, PostModel postModel) async {
-    final jsonNewsModel = postModel.toJson();
+    final jsonNewsModel = postModel.toJsonHive();
     await savedPostsDB.put(id, jsonNewsModel);
   }
 
@@ -50,7 +50,7 @@ class HiveHelper {
 
   static Future<void> cacheFavoritesPostById(
       String id, PostModel postModel) async {
-    final jsonNewsModel = postModel.toJson();
+    final jsonNewsModel = postModel.toJsonHive();
     await favoritesPostsDB.put(id, jsonNewsModel);
   }
 
